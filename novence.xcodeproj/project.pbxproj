@@ -60,14 +60,46 @@
 			children = (
 				046784352575ADB6001BB373 /* AppDelegate.swift */,
 				046784372575ADB6001BB373 /* SceneDelegate.swift */,
-				046784392575ADB6001BB373 /* ViewController.swift */,
-				0467843B2575ADB6001BB373 /* Main.storyboard */,
+				046784522575B64A001BB373 /* Model */,
+				0467844E2575B2FE001BB373 /* Controller */,
+				0467844D2575B2F7001BB373 /* View */,
+				046784502575B30C001BB373 /* Misc. */,
 				046784412575ADB9001BB373 /* Assets.xcassets */,
 				046784432575ADB9001BB373 /* LaunchScreen.storyboard */,
 				046784462575ADB9001BB373 /* Info.plist */,
-				0467843E2575ADB6001BB373 /* novence.xcdatamodeld */,
 			);
 			path = novence;
+			sourceTree = "<group>";
+		};
+		0467844D2575B2F7001BB373 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0467843B2575ADB6001BB373 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0467844E2575B2FE001BB373 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				046784392575ADB6001BB373 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		046784502575B30C001BB373 /* Misc. */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc.;
+			sourceTree = "<group>";
+		};
+		046784522575B64A001BB373 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0467843E2575ADB6001BB373 /* novence.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
