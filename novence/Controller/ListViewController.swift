@@ -10,12 +10,15 @@ import CoreData
 
 class ListViewController: UITableViewController {
 
+    @IBOutlet var productsList: UITableView!
     var products = [Product]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        productsList.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadProducts()
@@ -29,11 +32,12 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ProductCell
+        
         
         let product = products[indexPath.row]
         
-        cell.textLabel?.text = product.name
+        cell.productName.text = product.name
         
         return cell
     }

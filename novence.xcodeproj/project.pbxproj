@@ -9,23 +9,27 @@
 /* Begin PBXBuildFile section */
 		046784362575ADB6001BB373 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046784352575ADB6001BB373 /* AppDelegate.swift */; };
 		046784382575ADB6001BB373 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046784372575ADB6001BB373 /* SceneDelegate.swift */; };
-		0467843A2575ADB6001BB373 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046784392575ADB6001BB373 /* ViewController.swift */; };
+		0467843A2575ADB6001BB373 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046784392575ADB6001BB373 /* ListViewController.swift */; };
 		0467843D2575ADB6001BB373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0467843B2575ADB6001BB373 /* Main.storyboard */; };
 		046784402575ADB6001BB373 /* novence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0467843E2575ADB6001BB373 /* novence.xcdatamodeld */; };
 		046784422575ADB9001BB373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046784412575ADB9001BB373 /* Assets.xcassets */; };
 		046784452575ADB9001BB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046784432575ADB9001BB373 /* LaunchScreen.storyboard */; };
+		04FF37B62576BFEC00994A51 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF37B42576BFEC00994A51 /* ProductCell.swift */; };
+		04FF37B72576BFEC00994A51 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FF37B52576BFEC00994A51 /* ProductCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		046784322575ADB6001BB373 /* novence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = novence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046784352575ADB6001BB373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046784372575ADB6001BB373 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		046784392575ADB6001BB373 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		046784392575ADB6001BB373 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0467843C2575ADB6001BB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0467843F2575ADB6001BB373 /* novence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = novence.xcdatamodel; sourceTree = "<group>"; };
 		046784412575ADB9001BB373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046784442575ADB9001BB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		046784462575ADB9001BB373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04FF37B42576BFEC00994A51 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		04FF37B52576BFEC00994A51 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				0467843B2575ADB6001BB373 /* Main.storyboard */,
+				04FF37B42576BFEC00994A51 /* ProductCell.swift */,
+				04FF37B52576BFEC00994A51 /* ProductCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -82,7 +88,7 @@
 		0467844E2575B2FE001BB373 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				046784392575ADB6001BB373 /* ViewController.swift */,
+				046784392575ADB6001BB373 /* ListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046784452575ADB9001BB373 /* LaunchScreen.storyboard in Resources */,
+				04FF37B72576BFEC00994A51 /* ProductCell.xib in Resources */,
 				046784422575ADB9001BB373 /* Assets.xcassets in Resources */,
 				0467843D2575ADB6001BB373 /* Main.storyboard in Resources */,
 			);
@@ -172,8 +179,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0467843A2575ADB6001BB373 /* ViewController.swift in Sources */,
+				0467843A2575ADB6001BB373 /* ListViewController.swift in Sources */,
 				046784362575ADB6001BB373 /* AppDelegate.swift in Sources */,
+				04FF37B62576BFEC00994A51 /* ProductCell.swift in Sources */,
 				046784402575ADB6001BB373 /* novence.xcdatamodeld in Sources */,
 				046784382575ADB6001BB373 /* SceneDelegate.swift in Sources */,
 			);
