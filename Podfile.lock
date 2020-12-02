@@ -1,0 +1,16 @@
+PODS:
+  - AlertsAndPickers (2.0.2)
+
+DEPENDENCIES:
+  - AlertsAndPickers
+
+SPEC REPOS:
+  trunk:
+    - AlertsAndPickers
+
+SPEC CHECKSUMS:
+  AlertsAndPickers: 2a9cabfadaa2f4d52066bd842a7a1b1b2327a248
+
+PODFILE CHECKSUM: fa4b23be72460122817d763b7bd98b402a8d8e1f
+
+COCOAPODS: 1.10.0
