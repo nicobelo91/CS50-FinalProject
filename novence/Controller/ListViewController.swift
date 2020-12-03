@@ -23,7 +23,10 @@ class ListViewController: UITableViewController {
         // Do any additional setup after loading the view.
         
         tableView.rowHeight = 80
+        
         productsList.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        
+//        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadProducts()
@@ -68,12 +71,6 @@ class ListViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        context.delete(productArray[indexPath.row])
-        productArray.remove(at: indexPath.row)
-    }
-    
 // MARK: - Data Manipulation
     
     func saveProducts() {
@@ -114,7 +111,7 @@ class ListViewController: UITableViewController {
             
             self.productArray.append(newProduct)
             self.saveProducts()
-            self.tableView.reloadData()
+            self.loadProducts()
         }
         
         alert.addTextField { (alertTextField) in
@@ -136,40 +133,41 @@ class ListViewController: UITableViewController {
 // MARK: - Date Picker Methods
     
     func doDatePicker() {
-        self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: self.view.frame.size.height - 220, width: self.view.frame.size.width, height: 216))
+        self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 0, height: 150))
+        
         self.datePicker.backgroundColor = UIColor.white
         datePicker.datePickerMode = .date
         
         //toolbar
         
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-        toolBar.sizeToFit()
+//        toolBar.barStyle = .default
+//        toolBar.isTranslucent = true
+//        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+//        toolBar.sizeToFit()
         
         //Adding button toolbar
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
-        toolBar.setItems(([cancelButton,spaceButton,doneButton]), animated: true)
-        toolBar.isUserInteractionEnabled = true
+//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
+//        toolBar.setItems(([cancelButton,spaceButton,doneButton]), animated: true)
+//        toolBar.isUserInteractionEnabled = true
         
     }
     
-    @objc func doneClick() {
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateStyle = .medium
-        dateFormatter1.timeStyle = .none
-        
-        datePicker.isHidden = true
-        self.toolBar.isHidden = true
-    }
-    
-    @objc func cancelClick() {
-        datePicker.isHidden = true
-        self.toolBar.isHidden = true
-    }
+//    @objc func doneClick() {
+//        let dateFormatter1 = DateFormatter()
+//        dateFormatter1.dateStyle = .medium
+//        dateFormatter1.timeStyle = .none
+//
+//        datePicker.isHidden = true
+//        self.toolBar.isHidden = true
+//    }
+//
+//    @objc func cancelClick() {
+//        datePicker.isHidden = true
+//        self.toolBar.isHidden = true
+//    }
     
 }
 
@@ -202,11 +200,12 @@ extension ListViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil}
         
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [self] (action, indexPath) in
             
-            print(self.productArray[indexPath.row])
-//            self.context.delete(productArray[indexPath.row])
-//            self.productArray.remove(at: indexPath.row)
+            self.context.delete(self.productArray[indexPath.row])
+            self.productArray.remove(at: indexPath.row)
+            saveProducts()
+            
         }
         
         deleteAction.image = UIImage(named: "delete-icon")
@@ -214,9 +213,10 @@ extension ListViewController: SwipeTableViewCellDelegate {
         return [deleteAction]
     }
     
+    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        return options
+    }
     
 }
-
-//color palette
-
-
