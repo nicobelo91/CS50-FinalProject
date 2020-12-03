@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ListViewController.tableView(_:editActionsForRowAt:for:):ListViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ListViewController.productArray.getter:ListViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ListViewController.tableView(_:editActionsForRowAt:for:):ListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "self.productArray[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class ProductCell: UITableViewCell {
+class ProductCell: SwipeTableViewCell{
 
     @IBOutlet var productName: UILabel!
     @IBOutlet var expirationDate: UILabel!
