@@ -20,15 +20,10 @@ class ListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         tableView.rowHeight = 80
-        
         productsList.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-        
-//        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-        
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadProducts()
         
     }
@@ -41,19 +36,19 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ProductCell
+        
         cell.delegate = self
-        
         let product = productArray[indexPath.row]
-        
         cell.productName.text = product.name
         
+        //Format date into String
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let formatteddate = formatter.string(from: product.expiration ?? Date(timeIntervalSinceReferenceDate: 0))
         cell.expirationDate.text = formatteddate
         
-        let secondsToExpiration = product.expiration?.timeIntervalSinceNow
         
+        let secondsToExpiration = product.expiration?.timeIntervalSinceNow
 
         if secondsToExpiration! < 0 { //already expired
             cell.backgroundColor = UIColor(hexString: "39311d")
@@ -102,7 +97,7 @@ class ListViewController: UITableViewController {
         
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add new product", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add new product", message: "Add the name and its expiration date", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             let newProduct = Product(context: self.context)
@@ -119,7 +114,6 @@ class ListViewController: UITableViewController {
             textField = alertTextField
             self.doDatePicker()
             alertTextField.inputView = self.datePicker
-            alertTextField.inputAccessoryView = self.toolBar
         }
         
         //Grab the value from the text field and print it when the user clicks okay
@@ -128,95 +122,33 @@ class ListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
 // MARK: - Date Picker Methods
     
     func doDatePicker() {
         self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 0, height: 150))
-        
         self.datePicker.backgroundColor = UIColor.white
         datePicker.datePickerMode = .date
         
-        //toolbar
-        
-//        toolBar.barStyle = .default
-//        toolBar.isTranslucent = true
-//        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
-//        toolBar.sizeToFit()
-        
-        //Adding button toolbar
-        
-//        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
-//        toolBar.setItems(([cancelButton,spaceButton,doneButton]), animated: true)
-//        toolBar.isUserInteractionEnabled = true
-        
-    }
-    
-//    @objc func doneClick() {
-//        let dateFormatter1 = DateFormatter()
-//        dateFormatter1.dateStyle = .medium
-//        dateFormatter1.timeStyle = .none
-//
-//        datePicker.isHidden = true
-//        self.toolBar.isHidden = true
-//    }
-//
-//    @objc func cancelClick() {
-//        datePicker.isHidden = true
-//        self.toolBar.isHidden = true
-//    }
-    
-}
-
-// MARK: - SearchBar Methods
-
-extension ListViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let request: NSFetchRequest<Product> = Product.fetchRequest()
-        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
-        
-        loadProducts(with: request)
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadProducts()
-            
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-        }
     }
 }
 
 // MARK: - SwipeCellKit
 
 extension ListViewController: SwipeTableViewCellDelegate {
-    
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil}
-        
+
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [self] (action, indexPath) in
-            
+
             self.context.delete(self.productArray[indexPath.row])
             self.productArray.remove(at: indexPath.row)
             saveProducts()
-            
         }
-        
+
         deleteAction.image = UIImage(named: "delete-icon")
-        
+
         return [deleteAction]
     }
-    
-    func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-        var options = SwipeOptions()
-        options.expansionStyle = .destructive
-        return options
-    }
-    
 }
+
