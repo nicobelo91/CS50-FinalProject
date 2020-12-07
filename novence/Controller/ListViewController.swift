@@ -14,9 +14,9 @@ class ListViewController: UITableViewController {
 
     @IBOutlet var productsList: UITableView!
     var datePicker: UIDatePicker = UIDatePicker()
-    let toolBar = UIToolbar()
     var productArray = [Product]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var hex: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,27 +40,22 @@ class ListViewController: UITableViewController {
         cell.delegate = self
         let product = productArray[indexPath.row]
         cell.productName.text = product.name
+        var cellColor = CellManager(color: hex)
         
         //Format date into String
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        let formatteddate = formatter.string(from: product.expiration ?? Date(timeIntervalSinceReferenceDate: 0))
-        cell.expirationDate.text = formatteddate
-        
-        
-        let secondsToExpiration = product.expiration?.timeIntervalSinceNow
-
-        if secondsToExpiration! < 0 { //already expired
-            cell.backgroundColor = UIColor(hexString: "39311d")
-        } else if secondsToExpiration! < 259200.0 { //three days to expiration date
-            cell.backgroundColor = UIColor(hexString: "ac4b1c")
-        } else if secondsToExpiration! < 604800.0 { //seven days to expiration date
-            cell.backgroundColor = UIColor(hexString: "fca652")
-        } else if secondsToExpiration! < 1296000.0 { //fifteen days to expiration date
-            cell.backgroundColor = UIColor(hexString: "ffd57e")
-        } else {
-            cell.backgroundColor = UIColor(hexString: "ffefa0")
+        if let expirationText = product.expiration {
+            let expiration = cellColor.expirationDateText(date: expirationText)
+            cell.expirationDate.text = expiration
         }
+        
+        //Change cell's background color
+        if let secondsToExpiration = product.expiration?.timeIntervalSinceNow {
+
+            let result = cellColor.chooseBackgroundColor(time: secondsToExpiration)
+            hex = result
+            cell.backgroundColor = UIColor(hexString: hex)
+        }
+        
         cell.productName.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
         cell.expirationDate.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
         return cell

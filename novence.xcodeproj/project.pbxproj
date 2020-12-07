@@ -15,6 +15,7 @@
 		046784422575ADB9001BB373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046784412575ADB9001BB373 /* Assets.xcassets */; };
 		046784452575ADB9001BB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046784432575ADB9001BB373 /* LaunchScreen.storyboard */; };
 		04855E6C25782D8700C2B75D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04855E6B25782D8700C2B75D /* SwipeCellKit */; };
+		04AE2E1F257E87D600DDC357 /* CellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE2E1E257E87D600DDC357 /* CellManager.swift */; };
 		04FF37B62576BFEC00994A51 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF37B42576BFEC00994A51 /* ProductCell.swift */; };
 		04FF37B72576BFEC00994A51 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FF37B52576BFEC00994A51 /* ProductCell.xib */; };
 		53776A970B870DB56E373B16 /* Pods_novence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32032F78DADB160230BFECCB /* Pods_novence.framework */; };
@@ -30,6 +31,7 @@
 		046784412575ADB9001BB373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046784442575ADB9001BB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		046784462575ADB9001BB373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04AE2E1E257E87D600DDC357 /* CellManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellManager.swift; sourceTree = "<group>"; };
 		04FF37B42576BFEC00994A51 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		04FF37B52576BFEC00994A51 /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		0EC739839BE9F376F0E39950 /* Pods-novence.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-novence.debug.xcconfig"; path = "Target Support Files/Pods-novence/Pods-novence.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				0467843E2575ADB6001BB373 /* novence.xcdatamodeld */,
+				04AE2E1E257E87D600DDC357 /* CellManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0467843A2575ADB6001BB373 /* ListViewController.swift in Sources */,
+				04AE2E1F257E87D600DDC357 /* CellManager.swift in Sources */,
 				046784362575ADB6001BB373 /* AppDelegate.swift in Sources */,
 				04FF37B62576BFEC00994A51 /* ProductCell.swift in Sources */,
 				046784402575ADB6001BB373 /* novence.xcdatamodeld in Sources */,
