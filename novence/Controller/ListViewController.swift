@@ -17,15 +17,13 @@ class ListViewController: UITableViewController {
     var productArray = [Product]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var hex: String = ""
+    var currentTime = NSDate.init(timeIntervalSinceNow: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.rowHeight = 80
-        productsList.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
+        productsList.register(UINib(nibName: "ProductCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadProducts()
-        
     }
 
 // MARK: - Tableview Datasource Methods
@@ -35,9 +33,8 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell", for: indexPath) as! ProductCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductCell
         
-        cell.delegate = self
         let product = productArray[indexPath.row]
         cell.productName.text = product.name
         var cellColor = CellManager(color: hex)
@@ -48,17 +45,26 @@ class ListViewController: UITableViewController {
             cell.expirationDate.text = expiration
         }
         
-        //Change cell's background color
-        if let secondsToExpiration = product.expiration?.timeIntervalSinceNow {
-
-            let result = cellColor.chooseBackgroundColor(time: secondsToExpiration)
-            hex = result
-            cell.backgroundColor = UIColor(hexString: hex)
-        }
+        //Change cell's background color depending on today's date
+        if let productsExpirationTime = product.expiration?.timeIntervalSinceNow {
+            let secondsToExpiration = productsExpirationTime - currentTime.timeIntervalSinceNow
+                hex = cellColor.chooseBackgroundColor(time: secondsToExpiration)
+                cell.backgroundColor = UIColor(hexString: hex)
+            print(productsExpirationTime)
+            }
         
-        cell.productName.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
-        cell.expirationDate.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
-        return cell
+            cell.productName.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
+            cell.expirationDate.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
+            return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.context.delete(self.productArray[indexPath.row])
+            productArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            saveProducts()
+        }
     }
     
 // MARK: - Data Manipulation
@@ -126,24 +132,3 @@ class ListViewController: UITableViewController {
         
     }
 }
-
-// MARK: - SwipeCellKit
-
-extension ListViewController: SwipeTableViewCellDelegate {
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil}
-
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { [self] (action, indexPath) in
-
-            self.context.delete(self.productArray[indexPath.row])
-            self.productArray.remove(at: indexPath.row)
-            saveProducts()
-        }
-
-        deleteAction.image = UIImage(named: "delete-icon")
-
-        return [deleteAction]
-    }
-}
-
