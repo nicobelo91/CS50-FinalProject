@@ -9,6 +9,9 @@
          contextName = "ListViewController.addButtonPressed(_:):ListViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "datePicker">
+            </PersistentString>
+            <PersistentString
                value = "productArray">
             </PersistentString>
          </PersistentStrings>

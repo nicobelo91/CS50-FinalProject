@@ -1,10 +1,16 @@
 PODS:
+  - AlertsAndPickers (2.0.2)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
 
 DEPENDENCIES:
+  - AlertsAndPickers
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
+
+SPEC REPOS:
+  trunk:
+    - AlertsAndPickers
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -17,8 +23,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/wowansm/Chameleon.git
 
 SPEC CHECKSUMS:
+  AlertsAndPickers: 2a9cabfadaa2f4d52066bd842a7a1b1b2327a248
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
 
-PODFILE CHECKSUM: 16c86168ed7283ae1eb036dfd2021878ef7f6212
+PODFILE CHECKSUM: 67f515271bdfc486011e97bdd5b1d2b25a763071
 
 COCOAPODS: 1.10.0

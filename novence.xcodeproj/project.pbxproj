@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		046784402575ADB6001BB373 /* novence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0467843E2575ADB6001BB373 /* novence.xcdatamodeld */; };
 		046784422575ADB9001BB373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046784412575ADB9001BB373 /* Assets.xcassets */; };
 		046784452575ADB9001BB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046784432575ADB9001BB373 /* LaunchScreen.storyboard */; };
-		04855E6C25782D8700C2B75D /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04855E6B25782D8700C2B75D /* SwipeCellKit */; };
 		04AE2E1F257E87D600DDC357 /* CellManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AE2E1E257E87D600DDC357 /* CellManager.swift */; };
 		04FF37B62576BFEC00994A51 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF37B42576BFEC00994A51 /* ProductCell.swift */; };
 		04FF37B72576BFEC00994A51 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FF37B52576BFEC00994A51 /* ProductCell.xib */; };
@@ -44,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04855E6C25782D8700C2B75D /* SwipeCellKit in Frameworks */,
 				53776A970B870DB56E373B16 /* Pods_novence.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,7 +154,6 @@
 			);
 			name = novence;
 			packageProductDependencies = (
-				04855E6B25782D8700C2B75D /* SwipeCellKit */,
 			);
 			productName = novence;
 			productReference = 046784322575ADB6001BB373 /* novence.app */;
@@ -186,7 +183,6 @@
 			);
 			mainGroup = 046784292575ADB6001BB373;
 			packageReferences = (
-				04855E6A25782D8700C2B75D /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 046784332575ADB6001BB373 /* Products */;
 			projectDirPath = "";
@@ -467,25 +463,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		04855E6A25782D8700C2B75D /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		04855E6B25782D8700C2B75D /* SwipeCellKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 04855E6A25782D8700C2B75D /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
-			productName = SwipeCellKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0467843E2575ADB6001BB373 /* novence.xcdatamodeld */ = {

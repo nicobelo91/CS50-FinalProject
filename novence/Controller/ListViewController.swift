@@ -7,8 +7,8 @@
 
 import UIKit
 import CoreData
-import SwipeCellKit
 import ChameleonFramework
+import AlertsAndPickers
 
 class ListViewController: UITableViewController {
 
@@ -18,6 +18,7 @@ class ListViewController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var hex: String = ""
     var currentTime = NSDate.init(timeIntervalSinceNow: 0)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ class ListViewController: UITableViewController {
             let secondsToExpiration = productsExpirationTime - currentTime.timeIntervalSinceNow
                 hex = cellColor.chooseBackgroundColor(time: secondsToExpiration)
                 cell.backgroundColor = UIColor(hexString: hex)
-            print(productsExpirationTime)
+            //print(productsExpirationTime)
             }
         
             cell.productName.textColor = ContrastColorOf(cell.backgroundColor!, returnFlat: true)
@@ -97,10 +98,14 @@ class ListViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
+        let date = Date()
+        let minDate = Date(timeIntervalSinceNow: -1234567890)
+        let maxDate = Date(timeIntervalSinceNow: 1234567890)
+        datePicker.preferredDatePickerStyle = .inline
         
         let alert = UIAlertController(title: "Add new product", message: "Add the name and its expiration date", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+        let addProductAction = UIAlertAction(title: "Add", style: .default) { (action) in
             let newProduct = Product(context: self.context)
             newProduct.name = textField.text
             newProduct.expiration = self.datePicker.date
@@ -110,25 +115,24 @@ class ListViewController: UITableViewController {
             self.loadProducts()
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new product"
+            alertTextField.placeholder = "Add new item"
             textField = alertTextField
-            self.doDatePicker()
-            alertTextField.inputView = self.datePicker
         }
         
-        //Grab the value from the text field and print it when the user clicks okay
-        alert.addAction(action)
+        alert.addDatePicker(mode: .date, date: date, minimumDate: minDate, maximumDate: maxDate) { SelectedDate in
+            self.datePicker.date = SelectedDate
+            self.datePicker.preferredDatePickerStyle = .inline
+            
+        }
+        
+        //Grab the value from the text field and print it when the user clicks add
+        alert.addAction(addProductAction)
+        alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-    }
-    
-// MARK: - Date Picker Methods
-    
-    func doDatePicker() {
-        self.datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 0, height: 150))
-        self.datePicker.backgroundColor = UIColor.white
-        datePicker.datePickerMode = .date
         
     }
 }
